@@ -1,24 +1,17 @@
 let myImage = document.querySelector('.displayed-img');
 
-// myImage.onclick = function() {
-//     let mySrc = myImage.getAttribute('src');
-//     if(mySrc !== 'images/3.png') {
-//       myImage.setAttribute('src','images/3.png');
-//     } else {
-//       myImage.setAttribute('src','images/1.png');
-//     }
-// }
-
-// let myScore = document.querySelector('#result');
-
+function writeToFile(d1, d2){
+  var fso = new ActiveXObject("Scripting.FileSystemObject");
+  var fh = fso.OpenTextFile("data.txt", 8, false, 0);
+  fh.WriteLine(d1 + ':' + d2);
+  fh.Close();
+}
 
 // Positive score
 
 let myPosButton = document.querySelector('#posbutton');
 
 function setScorePos() { 
-  // myScore.textContent = 'Positive' + slideIndex;
-
   var xhr = new XMLHttpRequest();
   var url = "http://localhost:8000/saveScore";
   xhr.open("POST", url, true);
@@ -32,6 +25,9 @@ function setScorePos() {
   // };
   var data = JSON.stringify({"imageNum": slideIndex - 1, "scoreNum": "1"});
   xhr.send(data);
+  var id = slideIndex - 1;
+  var content = "1";
+  writeToFile(id, content);
 
 }
 
@@ -96,7 +92,6 @@ function showSlides(n) {
       dots[i].className = dots[i].className.replace(" active", "");
   }
   slides[slideIndex-1].style.display = "block"; 
-  // dots[slideIndex-1].className += " active";
 }
 
 
