@@ -1,11 +1,11 @@
 let myImage = document.querySelector('.displayed-img');
 
-function writeToFile(d1, d2){
-  var fso = new ActiveXObject("Scripting.FileSystemObject");
-  var fh = fso.OpenTextFile("data.txt", 8, false, 0);
-  fh.WriteLine(d1 + ':' + d2);
-  fh.Close();
-}
+// function writeToFile(d1, d2){
+//   var fso = new ActiveXObject("Scripting.FileSystemObject");
+//   var fh = fso.OpenTextFile("data.txt", 8, false, 0);
+//   fh.WriteLine(d1 + ':' + d2);
+//   fh.Close();
+// }
 
 // Positive score
 
@@ -13,7 +13,7 @@ let myPosButton = document.querySelector('#posbutton');
 
 function setScorePos() { 
   var xhr = new XMLHttpRequest();
-  var url = "http://localhost:8000/saveScore";
+  var url = "https://limitless-eyrie-00686.herokuapp.com/saveScore";
   xhr.open("POST", url, true);
 
   // xhr.setRequestHeader("Content-Type", "application/json");
@@ -25,9 +25,9 @@ function setScorePos() {
   // };
   var data = JSON.stringify({"imageNum": slideIndex - 1, "scoreNum": "1"});
   xhr.send(data);
-  var id = slideIndex - 1;
-  var content = "1";
-  writeToFile(id, content);
+//   var id = slideIndex - 1;
+//   var content = "1";
+//   writeToFile(id, content);
 
 }
 
@@ -43,7 +43,7 @@ function setScoreNeg() {
   // myScore.textContent = 'Negative' + slideIndex;
 
   var xhr = new XMLHttpRequest();
-  var url = "http://localhost:8000/saveScore";
+  var url = "https://limitless-eyrie-00686.herokuapp.com/saveScore";
   xhr.open("POST", url, true);
 
   // xhr.setRequestHeader("Content-Type", "application/json");
